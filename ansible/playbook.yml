@@ -1,0 +1,16 @@
+---
+- hosts: devops
+  become: yes
+  tasks:
+    - name: Update all packages (if needed)
+      yum:
+        name: "*"
+        state: latest
+
+    - name: Set hostname
+      hostname:
+        name: "devopstest.driirn.ca"
+
+    - name: Set timezone to Toronto (EST)
+      timezone:
+        name: "America/Toronto"

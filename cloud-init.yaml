@@ -1,0 +1,29 @@
+#cloud-config
+users:
+  - name: deployuser
+    sudo: ALL=(ALL) NOPASSWD:ALL
+    ssh_authorized_keys:
+      - ${ssh_rsa_key_here} # replace in Terraform or use SSH-Key in variables directly
+
+  - name: guest01
+  - name: guest02
+  - name: guest03
+  - name: guest04
+  - name: guest05
+  - name: guest06
+  - name: guest07
+  - name: guest08
+  - name: guest09
+  - name: guest10
+
+fs_setup:
+  - label: docker
+    filesystem: xfs
+    device: /dev/sdc   #Need to be adjusted according to the actual mounting situation of Azure
+    partition: none
+
+mounts:
+  - ["/dev/sdc", "/var/lib/docker", "xfs", "defaults", "0", "0"]
+
+package_update: true
+package_upgrade: true
